@@ -2,7 +2,7 @@
   border-right: 1px solid var(--border-color);
   padding: var(--size-xs) var(--size-md);
   text-align: left;
-  color: var(--text-secondarty-color);
+  color: var(--text-secondary-color);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
   font-weight: 600;
@@ -21,8 +21,8 @@
   margin-left: -4px;
 }
 
-.dataTableHeaderSortable {
-  color: var(--text-secondarty-color);
+button.dataTableHeaderSortable {
+  color: var(--text-secondary-color);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-xs);
   font-weight: 600;

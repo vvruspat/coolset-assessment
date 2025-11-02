@@ -4,7 +4,7 @@ import { Button } from "../../../atoms/Button/Button";
 import clsx from "clsx";
 import { ChevronLeftIcon } from "../../../atoms/Icons/ChevronLeftIcon";
 import { ChevronRightIcon } from "../../../atoms/Icons/ChevronRightIcon";
-import { DropdownIcon } from "../../../atoms/Icons/DropdownIcon";
+import { Select } from "../../../atoms/Select/Select";
 
 export interface DataTablePaginationProps extends ComponentProps<"nav"> {
   total: number;
@@ -42,34 +42,23 @@ export const DataTablePagination = ({
       className={clsx(styles.pagination, className)}
       {...restProps}
     >
-      <div className={styles.rowsPerPage}>
-        {/* <label htmlFor={`rows-per-page-${uiniqieId}`}>Rows per page</label>
-        <select
-          id={`rows-per-page-${uiniqieId}`}
-          name={`rows-per-page-${uiniqieId}`}
-          onChange={(e) => onRowsPerPageChange(Number(e.target.value))}
-          aria-label="Rows per page"
-        >
-          <option value="10" selected>
-            10
-          </option>
-          <option value="25">25</option>
-          <option value="50">50</option>
-        </select> */}
-        <Button
-          mode="transparent"
-          onClick={() => onRowsPerPageChange(10)}
-          before={<div className={styles.rowsPerPageLabel}>Rows per page:</div>}
-          after={<DropdownIcon />}
-          className={styles.rowsPerPageButton}
-        >
-          {limit}
-        </Button>
-      </div>
+      <Select
+        mode="transparent"
+        before={<div className={styles.rowsPerPageLabel}>Rows per page:</div>}
+        className={styles.rowsPerPageButton}
+        multiselect={false}
+        onChoose={(value) => onRowsPerPageChange(Number(value))}
+        options={[5, 10, 25, 50].map((num) => ({
+          value: num.toString(),
+          label: num.toString(),
+        }))}
+      >
+        {limit}
+      </Select>
 
       <div className={styles.pagesNavigation}>
         <div aria-live="polite" className={styles.pages}>
-          {offset}&ndash;{offset + limit} of {total}
+          {offset + 1}&ndash;{Math.min(offset + limit, total)} of {total}
         </div>
 
         <div className={styles.buttons}>

@@ -1,12 +1,16 @@
-import { useState, type ComponentProps, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useState,
+  type ComponentProps,
+  type ReactNode,
+} from "react";
 
 import clsx from "clsx";
 import styles from "./DataTable.module.css";
 import { AnimatePresence } from "framer-motion";
 import type { DataTableHeaderType, DataTableRowType } from "./types";
 import { DataTableCaption } from "./DataTableCaption/DataTableCaption";
-import { Button } from "../../atoms/Button/Button";
-import { FilterIcon } from "../../atoms/Icons/FilterIcon";
 import { DataTableRow } from "./DataTableRow/DataTableRow";
 import { DataTableCell } from "./DataTableCell/DataTableCell";
 import { DataTableHeader } from "./DataTableHeader/DataTableHeader";
@@ -16,6 +20,13 @@ export interface DataTableProps extends ComponentProps<"table"> {
   caption?: ReactNode;
   headers: DataTableHeaderType[];
   rows?: DataTableRowType[];
+  total: number;
+  onLoadData?: (
+    offset: number,
+    limit: number,
+    sortBy: string | null,
+    sortOrder: "asc" | "desc" | null
+  ) => void;
 }
 
 /** Primary UI component for user interaction */
@@ -23,17 +34,47 @@ export const DataTable = ({
   caption,
   headers,
   rows,
+  total,
+  onLoadData,
   ...props
 }: DataTableProps) => {
   const [sortBy, setSortBy] = useState<string | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+
+  const [limit, setLimit] = useState<number>(25);
+  const [offset, setOffset] = useState<number>(0);
+
+  const onNextPage = useCallback((offset: number, limit: number) => {
+    setOffset(offset);
+    setLimit(limit);
+  }, []);
+
+  const onPreviousPage = useCallback((offset: number, limit: number) => {
+    setOffset(offset);
+    setLimit(limit);
+  }, []);
+
+  const onRowsPerPageChange = useCallback((limit: number) => {
+    setLimit(limit);
+    setOffset(0);
+  }, []);
+
+  useEffect(() => {
+    onLoadData?.(offset, limit, sortBy, sortOrder);
+  }, [onLoadData, offset, limit, sortBy, sortOrder]);
 
   return (
     <AnimatePresence>
       <table {...props} className={clsx(styles.dataTable, props.className)}>
         {caption && (
           <DataTableCaption
-            after={<Button before={<FilterIcon />}>Filter by section</Button>}
+            after={
+              <div className={styles.filterWrapper}>
+                {headers
+                  .filter((header) => header.filter)
+                  .map((header) => header.filter)}
+              </div>
+            }
           >
             {caption}
           </DataTableCaption>
@@ -67,9 +108,11 @@ export const DataTable = ({
           {rows &&
             rows.map((row, index) => (
               <DataTableRow key={index}>
-                <DataTableCell>name</DataTableCell>
-                <DataTableCell type="number">0.76</DataTableCell>
-                <DataTableCell>role</DataTableCell>
+                {headers.map((header) => (
+                  <DataTableCell key={header.id} type={header.type}>
+                    {row[header.field]}
+                  </DataTableCell>
+                ))}
               </DataTableRow>
             ))}
         </tbody>
@@ -78,12 +121,12 @@ export const DataTable = ({
           <tr>
             <td colSpan={3}>
               <DataTablePagination
-                limit={25}
-                offset={0}
-                total={42}
-                onNextPage={() => {}}
-                onPreviousPage={() => {}}
-                onRowsPerPageChange={() => {}}
+                limit={limit}
+                offset={offset}
+                total={total}
+                onNextPage={onNextPage}
+                onPreviousPage={onPreviousPage}
+                onRowsPerPageChange={onRowsPerPageChange}
               />
             </td>
           </tr>

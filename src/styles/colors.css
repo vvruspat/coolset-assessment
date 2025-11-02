@@ -19,7 +19,7 @@
 :root[data-theme="light"] {
     --background-color: var(--color-primary-100);
     --text-primary-color: var(--color-primary-10);
-    --text-secondarty-color: var(--color-primary-60);
+    --text-secondary-color: var(--color-primary-60);
 
     --icon-color: var(--color-primary-70);
     --icon-disabled-color: var(--color-primary-80);
@@ -32,7 +32,7 @@
 :root[data-theme="dark"] {
     --background-color: var(--color-primary-10);
     --text-primary-color: var(--color-primary-100);
-    --text-secondarty-color: var(--color-primary-70);
+    --text-secondary-color: var(--color-primary-70);
 
     --icon-color: var(--color-primary-60);
     --icon-disabled-color: var(--color-primary-50);

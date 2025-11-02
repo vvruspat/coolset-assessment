@@ -7,15 +7,10 @@
     padding: var(--size-md) 0;
 }
 
-.rowsPerPage {
-    display: flex;
-    align-items: center;
-}
-
 .rowsPerPageLabel {
     font-size: var(--font-size-xs);
     line-height: var(--line-height-xs);
-    color: var(--text-secondarty-color);
+    color: var(--text-secondary-color);
 }
 
 .rowsPerPageButton {
@@ -33,7 +28,7 @@
 .pages {
     font-size: var(--font-size-xs);
     line-height: var(--line-height-xs);
-    color: var(--text-secondarty-color);
+    color: var(--text-secondary-color);
     font-weight: 400;
 }
 
