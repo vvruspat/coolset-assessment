@@ -1,0 +1,43 @@
+.pagination {
+    font-family: var(--font-family-secondary);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--size-4xl);
+    padding: var(--size-md) 0;
+}
+
+.rowsPerPage {
+    display: flex;
+    align-items: center;
+}
+
+.rowsPerPageLabel {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-xs);
+    color: var(--text-secondarty-color);
+}
+
+.rowsPerPageButton {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-xs);
+    padding-left: 0;
+}
+
+.pagesNavigation {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
+}
+
+.pages {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-xs);
+    color: var(--text-secondarty-color);
+    font-weight: 400;
+}
+
+.buttons {
+    display: flex;
+    gap: var(--size-2xs);
+}

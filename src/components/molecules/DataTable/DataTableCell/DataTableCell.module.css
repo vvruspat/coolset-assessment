@@ -1,4 +1,5 @@
 .dataTableCell {
+  font-family: var(--font-family-secondary);
   border-right: 1px solid var(--border-color);
   padding: var(--size-md);
 }

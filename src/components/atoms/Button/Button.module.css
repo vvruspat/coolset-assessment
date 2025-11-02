@@ -34,3 +34,21 @@
   border: none;
 }
 
+.icon {
+  padding: 0;
+  justify-content: center;
+
+  background-color: transparent;
+  color: var(--icon-color);
+  border: none;
+}
+
+.icon .content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:disabled {
+  color: var(--icon-disabled-color);
+}

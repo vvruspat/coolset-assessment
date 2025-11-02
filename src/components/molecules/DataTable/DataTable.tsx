@@ -60,17 +60,6 @@ export const DataTable = ({
                 {header.label}
               </DataTableHeader>
             ))}
-            {/* <th scope="col">
-            <button
-              type="button"
-              aria-label="Sort by name"
-              aria-sort="ascending"
-            >
-              Name <span aria-hidden="true">▲</span>
-            </button>
-          </th>
-          <th scope="col">Email</th>
-          <th scope="col">Role</th> */}
           </DataTableRow>
         </thead>
 
@@ -88,7 +77,14 @@ export const DataTable = ({
         <tfoot>
           <tr>
             <td colSpan={3}>
-              <DataTablePagination />
+              <DataTablePagination
+                limit={25}
+                offset={0}
+                total={42}
+                onNextPage={() => {}}
+                onPreviousPage={() => {}}
+                onRowsPerPageChange={() => {}}
+              />
             </td>
           </tr>
         </tfoot>

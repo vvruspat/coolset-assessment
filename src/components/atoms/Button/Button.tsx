@@ -4,7 +4,7 @@ import clsx from "clsx";
 import styles from "./Button.module.css";
 
 export interface ButtonProps extends ComponentProps<"button"> {
-  mode?: "primary" | "transparent";
+  mode?: "primary" | "transparent" | "icon";
   before?: ReactNode;
   after?: ReactNode;
 }
@@ -26,7 +26,7 @@ export const Button = ({
       {...props}
     >
       {before && <div className={styles.before}>{before}</div>}
-      <div>{children}</div>
+      <div className={styles.content}>{children}</div>
       {after && <div className={styles.after}>{after}</div>}
     </button>
   );

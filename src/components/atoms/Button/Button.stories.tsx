@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 
 import { Button } from "./Button";
+import { ChevronLeftIcon } from "../Icons/ChevronLeftIcon";
 
 const meta = {
   title: "Atoms/Button",
@@ -15,11 +16,12 @@ const meta = {
     onClick: { action: "clicked" },
     mode: {
       control: { type: "select" },
-      options: ["primary", "transparent"],
+      options: ["primary", "transparent", "icon"],
     },
     before: { control: "text" },
     after: { control: "text" },
     children: { control: "text" },
+    disabled: { control: "boolean" },
   },
   args: { onClick: fn() },
 } satisfies Meta<typeof Button>;
@@ -39,5 +41,12 @@ export const Transparent: Story = {
   args: {
     mode: "transparent",
     children: "Transparent button",
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    mode: "icon",
+    children: <ChevronLeftIcon />,
   },
 };

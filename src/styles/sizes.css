@@ -9,5 +9,7 @@
     --size-md: 1.067rem; /** 16px **/
     --size-lg: 1.2rem; /** 18px **/
     --size-xl: 1.333rem; /** 20px **/
-    --size-2xl: 1.6rem; /** 24px **/    
+    --size-2xl: 1.6rem; /** 24px **/ 
+    --size-3xl: 2rem; /** 30px **/
+    --size-4xl: 2.133rem; /** 32px **/  
 }
