@@ -1,0 +1,43 @@
+:root {
+    --color-primary-0: #000000;
+
+    --color-primary-10: rgba(2, 6, 23, 1);
+    --color-primary-20: rgba(16, 24, 40, 0.05);
+
+    --color-primary-30: rgba(27, 38, 70, 1);
+    --color-primary-40: rgba(45, 59, 99, 1);
+    --color-primary-50: rgba(66, 83, 132, 1);
+
+    --color-primary-60: rgba(113, 113, 122, 1);
+    --color-primary-70: rgba(147, 155, 170, 1);
+    --color-primary-80: rgba(161, 161, 170, 1);
+    --color-primary-90: rgba(226, 232, 240, 1);
+    --color-primary-100: rgba(255, 255, 255, 1);
+}
+
+
+:root[data-theme="light"] {
+    --background-color: var(--color-primary-100);
+    --text-primary-color: var(--color-primary-10);
+    --text-secondarty-color: var(--color-primary-60);
+
+    --icon-color: var(--color-primary-70);
+    --icon-disabled-color: var(--color-primary-80);
+
+    --border-color: var(--color-primary-90);
+
+    --shadow-color: var(--color-primary-20);
+}
+
+:root[data-theme="dark"] {
+    --background-color: var(--color-primary-10);
+    --text-primary-color: var(--color-primary-100);
+    --text-secondarty-color: var(--color-primary-70);
+
+    --icon-color: var(--color-primary-60);
+    --icon-disabled-color: var(--color-primary-50);
+
+    --border-color: var(--color-primary-30);
+
+    --shadow-color: var(--color-primary-60);
+}

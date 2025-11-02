@@ -1,0 +1,10 @@
+@import "./styles/index.css";
+
+:root {
+  font-family: var(--font-family);
+  font-size: var(--font-size-basic);
+  line-height: var(--line-height-basic);
+
+  background: var(--background-color);
+  color: var(--text-primary-color);
+}

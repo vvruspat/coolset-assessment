@@ -1,0 +1,12 @@
+.dataTableCell {
+  border-right: 1px solid var(--border-color);
+  padding: var(--size-md);
+}
+
+.stringType {
+  text-align: left;
+}
+
+.numberType {
+  text-align: right;
+}

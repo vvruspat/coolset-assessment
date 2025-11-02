@@ -1,0 +1,16 @@
+.dataTableCaption {
+    margin-bottom: var(--size-md);
+}
+
+.dataTableCaptionContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-md);
+    font-weight: 500;
+}
+
+.dataTableCaptionContent {
+    text-align: left;
+}

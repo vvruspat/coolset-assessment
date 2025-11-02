@@ -1,0 +1,13 @@
+:root {
+    --size-basic: 1rem; /** 15px **/
+
+    --size-4xs: 0.2667rem; /** 4px **/
+    --size-3xs: 0.4rem; /** 6px **/
+    --size-2xs: 0.533rem; /** 8px **/
+    --size-xs: 0.8rem; /** 12px **/
+    --size-sm: 0.933rem; /** 14px **/
+    --size-md: 1.067rem; /** 16px **/
+    --size-lg: 1.2rem; /** 18px **/
+    --size-xl: 1.333rem; /** 20px **/
+    --size-2xl: 1.6rem; /** 24px **/    
+}
