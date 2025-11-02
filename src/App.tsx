@@ -8,6 +8,8 @@ import type { GroceryItem } from "./types";
 import { Heading } from "./components/atoms/Heading";
 import styles from "./App.module.css";
 
+type ExtendedGroceryItem = GroceryItem & { price_100: number };
+
 function App() {
   const [sectionsFilter, setSectionsFilter] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<keyof GroceryItem | null>(null);
@@ -26,35 +28,38 @@ function App() {
     }));
   }, []);
 
-  const filteredData = useMemo(
+  const filteredData = useMemo<ExtendedGroceryItem[]>(
     () =>
-      groceryItemsMock.filter((item) =>
-        sectionsFilter.length > 0 ? sectionsFilter.includes(item.section) : true
-      ),
+      groceryItemsMock
+        .filter((item) =>
+          sectionsFilter.length > 0
+            ? sectionsFilter.includes(item.section)
+            : true
+        )
+        .map((item) => ({
+          ...item,
+          price_100: parseFloat(((item.price / item.weight) * 0.1).toFixed(2)),
+        })),
     [sectionsFilter]
   );
 
+  console.log({ filteredData });
+
   const total = useMemo(() => filteredData.length, [filteredData]);
 
-  const data = useMemo(() => {
-    let filteredData = groceryItemsMock;
-
-    if (sectionsFilter.length > 0) {
-      filteredData = filteredData.filter((item) =>
-        sectionsFilter.includes(item.section)
-      );
-    }
+  const data = useMemo<ExtendedGroceryItem[]>(() => {
+    let processedData = [...filteredData];
 
     if (sortBy) {
-      filteredData = filteredData.sort((a, b) => {
+      processedData = processedData.sort((a, b) => {
         if (a[sortBy] < b[sortBy]) return sortOrder === "asc" ? -1 : 1;
         if (a[sortBy] > b[sortBy]) return sortOrder === "asc" ? 1 : -1;
         return 0;
       });
     }
 
-    return filteredData.slice(offset, offset + limit);
-  }, [sectionsFilter, sortBy, sortOrder, limit, offset]);
+    return processedData.slice(offset, offset + limit);
+  }, [filteredData, sortBy, sortOrder, limit, offset]);
 
   const onSectionFilterChange = useCallback((values: string[]) => {
     setSectionsFilter(values);
@@ -100,8 +105,18 @@ function App() {
               </Select>
             ),
           },
-          { field: "price", label: "Price", sortable: true },
-          { field: "weight", label: "Weight", sortable: true },
+          {
+            field: "price",
+            label: "Price (€)",
+            sortable: true,
+            type: "number",
+          },
+          {
+            field: "price_100",
+            label: "Price / 100 g (€)",
+            sortable: true,
+            type: "number",
+          },
         ]}
         onLoadData={onLoadData}
         rows={data}
