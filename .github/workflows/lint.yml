@@ -28,8 +28,5 @@ jobs:
       - name: Lint check
         run: npm run lint
 
-      - name: Playwright install
-        run: npx playwright install
-
       - name: Tests check
         run: npm run test
