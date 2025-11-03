@@ -7,6 +7,7 @@ import { groceryItemsMock } from "./mock/data";
 import type { GroceryItem } from "./types";
 import { Heading } from "./components/atoms/Heading";
 import styles from "./App.module.css";
+import { ThemeSelector } from "./components/atoms/ThemeSelector";
 
 type ExtendedGroceryItem = GroceryItem & { price_100: number };
 
@@ -82,7 +83,10 @@ function App() {
 
   return (
     <main className={styles.container}>
-      <Heading mode="h1">Coolset&rsquo;s Frontend Assessment</Heading>
+      <div className={styles.header}>
+        <Heading mode="h1">Coolset&rsquo;s Frontend Assessment</Heading>{" "}
+        <ThemeSelector />
+      </div>
 
       <DataTable
         headers={[

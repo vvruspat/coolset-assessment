@@ -58,11 +58,11 @@
 }
 
 .optionItem:hover {
-  background-color: var(--color-primary-90);
+  background-color: var(--hover-background-color);
 }
 
 .optionItem:has(input:checked) {
-  background-color: var(--color-primary-20);
+  background-color: var(--checked-background-color);
 }
 
 .optionInput {

@@ -27,6 +27,8 @@
     --border-color: var(--color-primary-90);
 
     --shadow-color: var(--color-primary-20);
+    --hover-background-color: var(--color-primary-90);
+    --checked-background-color: var(--color-primary-20);
 }
 
 :root[data-theme="dark"] {
@@ -40,4 +42,6 @@
     --border-color: var(--color-primary-30);
 
     --shadow-color: var(--color-primary-60);
+    --hover-background-color: var(--color-primary-40);
+    --checked-background-color: var(--color-primary-50);
 }
