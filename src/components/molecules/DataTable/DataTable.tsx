@@ -72,7 +72,9 @@ export const DataTable = ({
               <div className={styles.filterWrapper}>
                 {headers
                   .filter((header) => header.filter)
-                  .map((header) => header.filter)}
+                  .map((header) => (
+                    <div key={header.field}>{header.filter}</div>
+                  ))}
               </div>
             }
           >
@@ -82,9 +84,9 @@ export const DataTable = ({
 
         <thead className={styles.dataTableHead}>
           <DataTableRow>
-            {headers.map((header, index) => (
+            {headers.map((header) => (
               <DataTableHeader
-                key={index}
+                key={header.field}
                 scope="col"
                 {...header}
                 sorted={sortBy === header.field}
@@ -107,9 +109,9 @@ export const DataTable = ({
         <tbody>
           {rows &&
             rows.map((row, index) => (
-              <DataTableRow key={index}>
+              <DataTableRow key={row.id ?? index}>
                 {headers.map((header) => (
-                  <DataTableCell key={header.id} type={header.type}>
+                  <DataTableCell key={header.field} type={header.type}>
                     {row[header.field]}
                   </DataTableCell>
                 ))}
@@ -119,7 +121,7 @@ export const DataTable = ({
 
         <tfoot>
           <tr>
-            <td colSpan={3}>
+            <td colSpan={headers.length}>
               <DataTablePagination
                 limit={limit}
                 offset={offset}

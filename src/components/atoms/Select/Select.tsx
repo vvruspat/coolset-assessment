@@ -66,18 +66,6 @@ export const Select = ({
 
   return (
     <div className={styles.wrapper} ref={wrapperRef}>
-      {/* <select
-        onChange={(e) => onChoose?.(e.target.value)}
-        ref={selectboxRef}
-        className={styles.selectboxHidden}
-        multiple={multiselect}
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select> */}
       <Button
         onClick={() => setDropdownOpened(!dropdownOpened)}
         after={<DropdownIcon />}

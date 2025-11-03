@@ -44,8 +44,6 @@ function App() {
     [sectionsFilter]
   );
 
-  console.log({ filteredData });
-
   const total = useMemo(() => filteredData.length, [filteredData]);
 
   const data = useMemo<ExtendedGroceryItem[]>(() => {
