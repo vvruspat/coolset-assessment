@@ -77,6 +77,7 @@ export const DataTable = ({
                   ))}
               </div>
             }
+            aria-label={`${typeof caption === "string" ? caption : ""}`}
           >
             {caption}
           </DataTableCaption>

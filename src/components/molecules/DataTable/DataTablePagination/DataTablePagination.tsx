@@ -44,6 +44,7 @@ export const DataTablePagination = ({
     >
       <Select
         mode="transparent"
+        aria-label="Rows per page selector"
         before={<div className={styles.rowsPerPageLabel}>Rows per page:</div>}
         className={styles.rowsPerPageButton}
         multiselect={false}
@@ -57,7 +58,14 @@ export const DataTablePagination = ({
       </Select>
 
       <div className={styles.pagesNavigation}>
-        <div aria-live="polite" className={styles.pages}>
+        <div
+          aria-live="polite"
+          className={styles.pages}
+          aria-label={`Rows from ${offset + 1} to ${Math.min(
+            offset + limit,
+            total
+          )} of ${total}`}
+        >
           {offset + 1}&ndash;{Math.min(offset + limit, total)} of {total}
         </div>
 

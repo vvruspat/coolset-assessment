@@ -22,11 +22,27 @@ export const DataTableHeader = ({
   ...props
 }: DataTableHeaderProps) => {
   return (
-    <th className={clsx(styles.dataTableHeader, props.className)} {...props}>
+    <th
+      className={clsx(styles.dataTableHeader, props.className)}
+      aria-live="polite"
+      aria-sort={
+        sorted ? (order === "asc" ? "ascending" : "descending") : "none"
+      }
+      {...props}
+    >
       {sortable ? (
         <div className={styles.dataTableHeaderSortableWrapper}>
           <Button
             mode="transparent"
+            aria-label={`${
+              typeof children === "string" ? children : "column"
+            }. ${
+              sorted
+                ? order === "asc"
+                  ? "Sorted ascending"
+                  : "Sorted descending"
+                : ""
+            }`}
             className={styles.dataTableHeaderSortable}
             before={
               sorted && (
@@ -44,7 +60,7 @@ export const DataTableHeader = ({
                   }}
                   whileHover={{ scale: 1.1 }}
                 >
-                  <VerticalArrowIcon />
+                  <VerticalArrowIcon aria-hidden={true} />
                 </motion.div>
               )
             }

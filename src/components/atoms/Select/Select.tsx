@@ -28,6 +28,7 @@ export const Select = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const [dropdownOpened, setDropdownOpened] = useState(false);
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -58,9 +59,11 @@ export const Select = ({
         )
       ).map((input) => (input as HTMLInputElement).value);
       (onChoose as (value: string[]) => void)(selectedValues);
+      setSelectedValues(selectedValues);
     } else {
       (onChoose as (value: string) => void)(value);
       setDropdownOpened(false);
+      setSelectedValues([value]);
     }
   };
 
@@ -79,9 +82,14 @@ export const Select = ({
           dropdownOpened && styles.dropdownOpened
         )}
       >
-        <ul className={styles.optionsList}>
+        <ul className={styles.optionsList} role="listbox">
           {options.map((option) => (
-            <li key={option.value} className={styles.optionItem}>
+            <li
+              key={option.value}
+              className={styles.optionItem}
+              role="option"
+              aria-selected={selectedValues.includes(option.value)}
+            >
               <input
                 type={multiselect ? "checkbox" : "radio"}
                 name={`select-option-${uniqueId}`}
@@ -89,6 +97,7 @@ export const Select = ({
                 id={`select-option-${uniqueId}-${option.value}`}
                 onChange={onValueChanged}
                 className={styles.optionInput}
+                aria-hidden={true}
               />
               <label htmlFor={`select-option-${uniqueId}-${option.value}`}>
                 {option.label}
