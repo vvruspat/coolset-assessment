@@ -22,18 +22,14 @@ export const DataTableHeader = ({
   ...props
 }: DataTableHeaderProps) => {
   return (
-    <th
-      className={clsx(styles.dataTableHeader, props.className)}
-      aria-live="polite"
-      aria-sort={
-        sorted ? (order === "asc" ? "ascending" : "descending") : "none"
-      }
-      {...props}
-    >
+    <th className={clsx(styles.dataTableHeader, props.className)} {...props}>
       {sortable ? (
         <div className={styles.dataTableHeaderSortableWrapper}>
           <Button
             mode="transparent"
+            aria-sort={
+              sorted ? (order === "asc" ? "ascending" : "descending") : "none"
+            }
             aria-label={`${
               typeof children === "string" ? children : "column"
             }. ${

@@ -39,7 +39,7 @@ describe("DataTableHeader", () => {
     const onSort = vi.fn();
     renderHeader({ sortable: true, onSort });
 
-    const button = screen.getByRole("button", { name: "Name" });
+    const button = screen.getByRole("button", { name: /Name/ });
     await user.click(button);
 
     expect(onSort).toHaveBeenCalledTimes(1);
@@ -48,7 +48,7 @@ describe("DataTableHeader", () => {
   it("shows sort indicator when sorted", () => {
     renderHeader({ sortable: true, sorted: true, order: "asc" });
 
-    const button = screen.getByRole("button", { name: "Name" });
+    const button = screen.getByRole("button", { name: /Name/ });
     expect(button.querySelector("svg")).not.toBeNull();
   });
 });

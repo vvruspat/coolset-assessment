@@ -50,7 +50,7 @@ describe("DataTable", () => {
     });
     expect(onLoadData.mock.calls[0]).toEqual([0, 25, null, "asc"]);
 
-    const sortButton = screen.getByRole("button", { name: "Name" });
+    const sortButton = screen.getByRole("button", { name: /Name/ });
     await user.click(sortButton);
 
     await waitFor(() => {
